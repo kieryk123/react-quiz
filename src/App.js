@@ -15,6 +15,7 @@ class App extends Component {
     this.addPoint = this.addPoint.bind(this);
     this.nextRound = this.nextRound.bind(this);
     this.checkRound = this.checkRound.bind(this);
+    this.endGame = this.endGame.bind(this);
   }
 
   componentWillMount() {
@@ -109,28 +110,32 @@ class App extends Component {
       <div className="wrapper">
         <div className="quiz-window">
           <Question question={this.state.question} />
-          <Timer key={this.state.round} round={this.state.round} onTimesUp={this.endGame.bind(this)} />
+          <Timer key={this.state.round} round={this.state.round} onTimesUp={this.endGame} />
           <PointsCounter points={this.state.points} />
           <div className="buttons-wrapper">
             <Button
               name="A"
               handleClick={this.nextRound}
               answer={this.state.answer}
+              handleFail={this.endGame}
             />
             <Button
               name="B"
               handleClick={this.nextRound}
               answer={this.state.answer}
+              handleFail={this.endGame}
             />
             <Button
               name="C"
               handleClick={this.nextRound}
               answer={this.state.answer}
+              handleFail={this.endGame}
             />
             <Button
               name="D"
               handleClick={this.nextRound}
               answer={this.state.answer}
+              handleFail={this.endGame}
             />
           </div>
         </div>
@@ -148,6 +153,8 @@ class Button extends Component {
   checkAnswer() {
     if (this.props.name === this.props.answer) {
       this.props.handleClick();
+    } else {
+      this.props.handleFail();
     }
   }
 
