@@ -150,7 +150,7 @@ const Question = (props) => {
 }
 
 class Button extends Component {
-  checkAnswer() {
+  checkAnswer = () => {
     if (this.props.name === this.props.answer) {
       this.props.handleClick();
     } else {
@@ -159,7 +159,7 @@ class Button extends Component {
   }
 
   render() {
-    return <button onClick={this.checkAnswer.bind(this)} className="answer-btn" type="button">{this.props.name}</button>;
+    return <button onClick={this.checkAnswer} className="answer-btn" type="button">{this.props.name}</button>;
   }
 }
 
@@ -189,7 +189,7 @@ class Timer extends Component {
     this.setState({time: 10}, () => {
       this.timer = setInterval(() => {
         this.setState((state) => {
-          console.log('cykam');
+          // console.log('cykam');
           if (state.time === 1) {
             this.props.onTimesUp();
             clearInterval(this.timer);
